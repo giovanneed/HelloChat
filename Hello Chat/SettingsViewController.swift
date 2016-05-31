@@ -7,3 +7,27 @@
 //
 
 import Foundation
+
+class SettingsViewController : UIViewController {
+    
+    
+    @IBOutlet weak var imageProfile: UIImageView!
+    
+    @IBOutlet weak var lblName: UILabel!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.imageProfile.image = Controller.sharedInstance.loggedUser.image.image
+        
+        self.lblName.text = Controller.sharedInstance.loggedUser.name
+        
+    }
+    
+    @IBAction func signout(sender: UIButton) {
+        FBSDKAccessToken.setCurrentAccessToken(nil)
+        performSegueWithIdentifier("SegueLogout", sender: nil)
+    }
+    
+    
+}
